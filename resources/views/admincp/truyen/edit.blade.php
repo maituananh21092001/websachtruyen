@@ -29,6 +29,10 @@
                             <input type="text" value="{{$truyen->tentruyen}}" class="form-control" name="tentruyen" onkeyup="ChangeToSlug();" id="slug" placeholder="Them truyen ...">
                         </div>
                         <div class="form-group">
+                            <label for="">Tác giả:</label>
+                            <input type="text" value="{{$truyen->tacgia}}" class="form-control" name="tacgia"  placeholder="Them tác giả ...">
+                        </div>
+                        <div class="form-group">
                             <label for="">Slug truyện:</label>
                             <input type="text" value="{{$truyen->slug_truyen}}" class="form-control" name="slug_truyen" id="convert_slug" placeholder="Slug truyen ...">
                         </div>

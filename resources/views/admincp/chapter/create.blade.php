@@ -36,8 +36,8 @@
                             <input type="text"  value="{{old('tomtat')}}" class="form-control" name="tomtat" id="email" placeholder="Mô tả chapter...">
                         </div>
                         <div class="form-group">
-                            <label for="">Tóm tắt chapter:</label>
-                            <textarea name = "noidung" class="form-control" rows="5" style="resize: none;"></textarea>
+                            <label for="">Noi dung chapter:</label>
+                            <textarea name = "noidung" id="noidung_chapter" class="form-control" rows="5" style="resize: none;"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="sel1">Thuộc truyện:</label>

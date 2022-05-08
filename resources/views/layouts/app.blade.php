@@ -83,6 +83,10 @@
             @yield('content')
         </main>
     </div>
+    <script src="//cdn.ckeditor.com/4.16.0/full/ckeditor.js"></script>
+    <script type="text/javascript">
+        CKEDITOR.replace('noidung_chapter')
+    </script>
     <script type="text/javascript">
         function ChangeToSlug() {
             var slug;
@@ -114,6 +118,7 @@
             document.getElementById('convert_slug').value = slug;
         }
     </script>
+    
 </body>
 
 </html>

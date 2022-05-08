@@ -25,7 +25,11 @@
                         @csrf
                         <div class="form-group">
                             <label for="">Tên truyện:</label>
-                            <input type="text" value="{{old('tentruyen')}}" class="form-control" name="tentruyen" onkeyup="ChangeToSlug();" id="slug" placeholder="Them truyen ...">
+                            <input type="text" value="{{old('tentruyen')}}" class="form-control" name="tentruyen" onkeyup="ChangeToSlug();"  placeholder="Them truyen ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Tác giả:</label>
+                            <input type="text" value="{{old('tacgia')}}" class="form-control" name="tacgia" id="slug" placeholder="Them tác giả ...">
                         </div>
                         <div class="form-group">
                             <label for="">Slug truyện:</label>

@@ -45,11 +45,13 @@ class TruyenController extends Controller
                 'slug_truyen' => 'required|unique:truyen|max:255',
                 'tomtat' => 'required',
                 'kichhoat' => 'required',
+                'tacgia' =>'required',
                 'hinhanh' => 'required|image|max:2048|dimensions:min_width=100, min_height=100,max_width=1000,max_height=1000',
                 'danhmuc' => 'required',
             ],
             [
                 'tentruyen.required' => 'Ten truyen phai co',
+                'tacgia.required' => 'Ten tac gia phai co',
                 'tentruyen.unique' => 'Ten truyen da ton tai',
                 'slug_truyen.unique' => 'Slug truyen da ton tai',
                 'slug_truyen.required' => 'Slug truyen phai co',
@@ -67,6 +69,7 @@ class TruyenController extends Controller
         $truyen->slug_truyen = $data['slug_truyen'];
         $truyen->tomtat = $data['tomtat'];
         $truyen->kichhoat = $data['kichhoat'];
+        $truyen->tacgia = $data['tacgia'];
         $truyen->danhmuc_id = $data['danhmuc'];
         //them anh vao folder
         $get_image = $request->hinhanh;
@@ -118,6 +121,7 @@ class TruyenController extends Controller
             [
                 'tentruyen' => 'required|max:255',
                 'slug_truyen' => 'required|max:255',
+                'tacgia' => 'required',
                 'tomtat' => 'required',
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
@@ -125,6 +129,7 @@ class TruyenController extends Controller
             [
 
                 'tentruyen.required' => 'Ten truyen phai co',
+                'tacgia.required' => 'Ten tac gia phai co',
                 'slug_truyen.required' => 'Slug truyen phai co',
                 'tomtat.required' => 'Tom tat truyen phai co',
 
@@ -138,6 +143,7 @@ class TruyenController extends Controller
         $truyen->tentruyen = $data['tentruyen'];
         $truyen->slug_truyen = $data['slug_truyen'];
         $truyen->tomtat = $data['tomtat'];
+        $truyen->tacgia = $data['tacgia'];
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->danhmuc_id = $data['danhmuc'];
         //them anh vao folder

@@ -12,7 +12,7 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-3">
-                <img class="card-img-top" src="{{asset('public/uploads/truyen/1001dem9.jpg')}}">
+                <img class="card-img-top" src="{{asset('public/uploads/truyen/'.$truyen->hinhanh)}}">
             </div>
             <div class="col-md-9">
                 <style type="text/css">
@@ -21,14 +21,23 @@
                     }
                 </style>
                 <ul class="infotruyen">
-                    <li>Tác giả: Yokoshima</li>
-                    <li>Thể loại: Trinh thám cổ tích</li>
+                    <li>Tên truyện: {{$truyen->tentruyen}}</li>
+                    <li>Tác giả: {{$truyen->tacgia}}</li>
+                    <li>Danh mục truyện <a href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}"></a>
+                        {{$truyen->danhmuctruyen->tendanhmuc}}
+                    </li>
                     <li>Số chapter: 200</li>
                     <li>Số lượt xem: 200</li>
                     <li><a href="">Xem mục lục</a></li>
+                   
+                    @if($chapter_dau)
                     <li>
-                        <a class="btn btn-primary" href="">Đọc Online</a>
+                        <a class="btn btn-primary" href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}">Đọc Online</a>
                     </li>
+                    @else
+                    <li><a class="btn btn-primary">Hiện tại chưa có chương</a></li>
+                    @endif
+
                 </ul>
             </div>
         </div>
@@ -40,60 +49,38 @@
         <hr>
         <h4>Mục lục</h4>
         <ul class="mucluctruyen">
+            @php
+            $mucluc = count($chapter)
+            @endphp
+            @if($mucluc>0)
+                @foreach($chapter as $key =>$chap)
+                <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
+                @endforeach
+            @else
+                <li>Mucj lục đang cập nhật</li>
+            @endif
 
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
-            <li><a href="">PHẦN THỨ NHẤT: CHƯƠNG MỘT</a></li>
         </ul>
         <h4>Sách cùng danh mục</h4>
         <div class="row">
+            @foreach($cungdanhmuc as $key => $value)
             <div class="col-md-3">
                 <div class="card mb-3 shadow-sm">
-                    <a href=""></a>
-                    <img class="card-img-top" src="{{asset('public/uploads/truyen/1001dem9.jpg')}}">
+                    <img class="card-img-top" src="{{asset('public/uploads/truyen/'.$value->hinhanh)}}">
                     <div class="card-body">
-                        <h5>This is a wider card with supporting text </h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                       
+                        <h5>{{$value -> tentruyen}} </h5>
+                        <p class="card-text">{{$value -> tomtat}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a href="{{url('xem-truyen/'.$value->slug_truyen)}}" type="button" class="btn btn-sm btn-outline-secondary">Đọc ngay</a>
+                                <a href="" class="btn btn-sm btn-outline-secondary"><i class="fas fa-eye"></i>3456</a>
+                            </div>
+                            <small class="text-muted">9 mins ago</small>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="card mb-3 shadow-sm">
-                    <a href=""></a>
-                    <img class="card-img-top" src="{{asset('public/uploads/truyen/1001dem9.jpg')}}">
-                    <div class="card-body">
-                        <h5>This is a wider card with supporting text </h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-3 shadow-sm">
-                    <a href=""></a>
-                    <img class="card-img-top" src="{{asset('public/uploads/truyen/1001dem9.jpg')}}">
-                    <div class="card-body">
-                        <h5>This is a wider card with supporting text </h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card mb-3 shadow-sm">
-                    <a href=""></a>
-                    <img class="card-img-top" src="{{asset('public/uploads/truyen/1001dem9.jpg')}}">
-                    <div class="card-body">
-                        <h5>This is a wider card with supporting text </h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                       
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
 
     </div>

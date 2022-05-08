@@ -92,7 +92,9 @@ class ChapterController extends Controller
      */
     public function edit($id)
     {
-        //
+        $chapter = Chapter::find($id);
+        $truyen = Truyen::orderBy('id','DESC')->get();
+        return view('admincp.chapter.edit')->with(compact('truyen','chapter'));
     }
 
     /**
@@ -104,7 +106,40 @@ class ChapterController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate(
+            [
+                'tieude' => 'required|max:255',
+                'slug_chapter' => 'required|max:255',
+                'noidung' =>'required',
+                'tomtat' => 'required',
+                'kichhoat' => 'required',
+                'truyen_id' => 'required',
+            ],
+            [
+                'tieude.required' => 'Ten chapter phai co',
+                'tieude.unique' => 'Ten chpater da ton tai',
+                'slug_chapter.unique' => 'Slug chapter da ton tai',
+                'slug_chapter.required' => 'Slug chapter phai co',
+                'tomtat.required' => 'Tom tat chapter phai co',
+                'noidung.required' => 'Noidung chapter phai co',
+
+            ]
+
+        );
+        //$data = $request->all();
+        // dd($data);
+
+        $chapter = Chapter::find($id);
+        $chapter->tieude = $data['tieude'];
+        $chapter->slug_chapter = $data['slug_chapter'];
+        $chapter->tomtat = $data['tomtat'];
+        $chapter->kichhoat = $data['kichhoat'];
+        $chapter->truyen_id = $data['truyen_id'];
+        $chapter->noidung = $data['noidung'];
+        //them anh vao folder
+       
+        $chapter->save();
+        return redirect()->back()->with('status', 'Cap nhat chapter thanh cong');
     }
 
     /**
