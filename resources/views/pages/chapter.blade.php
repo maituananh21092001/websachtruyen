@@ -13,9 +13,16 @@
         <h4>{{$chapter->truyen->tentruyen}}</h4>
         <p>{{$chapter->tieude}}</p>
         <div class="col-md-5">
-            
+            <style type="text/css">
+                .isDisabled{
+                    color:currentColor;
+                    pointer-events: none;
+                    opacity: 0.5;
+                    text-decoration: none;
+                }
+            </style>
             <div class="form-group">
-                <p class=""><a class="btn btn-primary">Tập trước</a></p>
+                <p class=""><a class="btn btn-primary {{$chapter->id==$min_id->id? 'isDisabled':''}}" href="{{url('xem-chapter/'.$previous_chapter)}}">Tập trước</a></p>
                 <label for="exampleInputEmail">Chọn chương</label>
                 <select name="select-chapter" class="custom-select select-chapter">
                     @foreach($all_chapter as $key => $chap)
@@ -24,7 +31,7 @@
 
 
                 </select>
-                <p class="mt-4"><a class="btn btn-primary">Tập sau</a></p>
+                <p class="mt-4"><a class="btn btn-primary {{$chapter->id==$max_id->id? 'isDisabled':''}}" href="{{url('xem-chapter/'.$next_chapter)}}">Tập sau</a></p>
             </div>
         </div>
         <div class="noidungchuong">
