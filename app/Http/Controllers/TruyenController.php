@@ -16,7 +16,7 @@ class TruyenController extends Controller
     public function index()
     {
 
-        $list_truyen = Truyen::with('danhmuctruyen')->orderBy('id', 'DESC')->get();
+        $list_truyen = Truyen::with('danhmuctruyen','theloai')->orderBy('id', 'DESC')->get();
         return view('admincp.truyen.index')->with(compact('list_truyen'));
     }
 
@@ -59,7 +59,7 @@ class TruyenController extends Controller
                 'slug_truyen.required' => 'Slug truyen phai co',
                 'tomtat.required' => 'Tom tat truyen phai co',
                 'hinhanh.required' => 'Hinh anh truyen phai co',
-
+                'theloai.required' => 'The loai truyen phai co'
             ]
 
         );
@@ -107,9 +107,9 @@ class TruyenController extends Controller
     {
 
         $truyen = Truyen::find($id);
-      //  $theloai = TheLoai::orderBy('id','DESC')->get();
+        $theloai = TheLoai::orderBy('id','DESC')->get();
         $danhmuc = DanhmucTruyen::orderBy('id', 'DESC')->get();
-        return view('admincp.truyen.edit')->with(compact('truyen', 'danhmuc'));
+        return view('admincp.truyen.edit')->with(compact('truyen', 'danhmuc','theloai'));
     }
 
     /**
@@ -129,6 +129,7 @@ class TruyenController extends Controller
                 'tomtat' => 'required',
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
+                'theloai' => 'required',
             ],
             [
 
@@ -136,7 +137,7 @@ class TruyenController extends Controller
                 'tacgia.required' => 'Ten tac gia phai co',
                 'slug_truyen.required' => 'Slug truyen phai co',
                 'tomtat.required' => 'Tom tat truyen phai co',
-
+                'theloai.required' => 'The loai truyen phai co'
             ]
 
         );
@@ -145,6 +146,7 @@ class TruyenController extends Controller
 
         $truyen = Truyen::find($id);
         $truyen->tentruyen = $data['tentruyen'];
+        $truyen->theloai_id = $data['theloai'];
         $truyen->slug_truyen = $data['slug_truyen'];
         $truyen->tomtat = $data['tomtat'];
         $truyen->tacgia = $data['tacgia'];

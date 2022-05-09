@@ -1,7 +1,7 @@
 @extends('../layout')
 
 @section('content')
-<h3>{{$tendanhmuc}}</h3>
+<h3>{{$tentheloai}}</h3>
 <div class="album py-5 bg-light">
     <div class="container">
         <div class="row">
@@ -37,7 +37,6 @@
             @endforeach
         @endif
     </div>
-    <a class="btn btn-success" href="">Xem tất cả</a>
 </div>
 </div>
 

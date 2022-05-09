@@ -20,4 +20,7 @@ class Truyen extends Model
     public function chapter(){
         return $this->hasMany('App\Models\Chapter','truyen_id','id');
     }
+    public function theloai(){
+        return $this->belongsTo('App\Models\Theloai','theloai_id','id');
+    }
 }
