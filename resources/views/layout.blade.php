@@ -444,9 +444,9 @@
                     </li>
                   
                 </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <form class="form-inline my-2 my-lg-0" action="{{url('tim-kiem')}}" method="GET">
+                    <input class="form-control mr-sm-2" type="search" name = "tukhoa" placeholder="Tìm kiếm tác giả,truyện,..." aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
                 </form>
             </div>
         </nav>
