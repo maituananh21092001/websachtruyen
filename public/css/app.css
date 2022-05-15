@@ -11287,3 +11287,14 @@ textarea.form-control-lg {
     display: none !important;
   }
 } 
+ul.dropdown li{
+  padding: 4px 15px;
+
+}
+ul.dropdown li a{
+ text-transform: uppercase;
+ color: #000;
+  
+}
+
+ 

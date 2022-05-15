@@ -15,8 +15,8 @@
         <p>{{$chapter->tieude}}</p>
         <div class="col-md-5">
             <style type="text/css">
-                .isDisabled{
-                    color:currentColor;
+                .isDisabled {
+                    color: currentColor;
                     pointer-events: none;
                     opacity: 0.5;
                     text-decoration: none;
@@ -50,8 +50,13 @@
             </select>
         </div>
         <h3>Luư và chia sẻ truyện: </h3>
-        <a><i class="fab fa-facebook-f"></i></a>
-        <a><i class="fab fa-twitter"></i></a>
+        <div class="fb-share-button" data-href="{{\URL::current()}}" data-layout="button_count" data-size="small"><a target="_blank" href="{{\URL::current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+        <div class="row"></div>
+        <div class="col-md-12">
+
+            <div class="fb-comments" data-href="{{\URL::current();}}" data-width="100%" data-numposts="10"></div>
+        </div>
+        <div>
+        </div>
     </div>
-</div>
-@endsection
+    @endsection

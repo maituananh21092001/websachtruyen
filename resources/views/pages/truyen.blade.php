@@ -21,6 +21,7 @@
                     }
                 </style>
                 <ul class="infotruyen">
+                    <div class="fb-share-button" data-href="{{\URL::current()}}" data-layout="button_count" data-size="small"><a target="_blank" href="{{\URL::current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
                     <li>Tên truyện: {{$truyen->tentruyen}}</li>
                     <li>Tác giả: {{$truyen->tacgia}}</li>
                     <li>Danh mục truyện: <a href="{{url('danh-muc/'.$truyen->danhmuctruyen->slug_danhmuc)}}"></a>
@@ -32,10 +33,14 @@
                     <li>Số chapter: 200</li>
                     <li>Số lượt xem: 200</li>
                     <li><a href="">Xem mục lục</a></li>
-                   
+
                     @if($chapter_dau)
                     <li>
                         <a class="btn btn-primary" href="{{url('xem-chapter/'.$chapter_dau->slug_chapter)}}">Đọc Online</a>
+                    </li>
+
+                    <li>
+                        <a class="mt-2 btn btn-success" href="{{url('xem-chapter/'.$chapter_moinhat->slug_chapter)}}">Đọc chương mới nhất</a>
                     </li>
                     @else
                     <li><a class="btn btn-primary">Hiện tại chưa có chương</a></li>
@@ -56,14 +61,15 @@
             $mucluc = count($chapter)
             @endphp
             @if($mucluc>0)
-                @foreach($chapter as $key =>$chap)
-                <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
-                @endforeach
+            @foreach($chapter as $key =>$chap)
+            <li><a href="{{url('xem-chapter/'.$chap->slug_chapter)}}">{{$chap->tieude}}</a></li>
+            @endforeach
             @else
-                <li>Mucj lục đang cập nhật</li>
+            <li>Mucj lục đang cập nhật</li>
             @endif
-
         </ul>
+        <div class="fb-comments" data-href="{{\URL::current();}}" data-width="100%" data-numposts="10"></div>
+
         <h4>Sách cùng danh mục</h4>
         <div class="row">
             @foreach($cungdanhmuc as $key => $value)

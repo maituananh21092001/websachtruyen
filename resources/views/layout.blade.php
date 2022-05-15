@@ -421,7 +421,7 @@
                     <li class="nav-item active">
                         <a class="nav-link" href="{{url('/')}}">Trang chủ <span class="sr-only">(current)</span></a>
                     </li>
-                   
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Danh mục truyện
@@ -434,18 +434,26 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Thể loại 
+                            Thể loại
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach($theloai as $key => $the)
+                            @foreach($theloai as $key => $the)
                             <a class="dropdown-item" href="{{url('the-loai/'.$the->slug_theloai)}}">{{$the->tentheloai}}</a>
                             @endforeach
                         </div>
                     </li>
-                  
+
                 </ul>
-                <form class="form-inline my-2 my-lg-0" action="{{url('tim-kiem')}}" method="GET">
-                    <input class="form-control mr-sm-2" type="search" name = "tukhoa" placeholder="Tìm kiếm tác giả,truyện,..." aria-label="Search">
+                <form autocomplete="off" class="form-inline my-2 my-lg-0" action="{{url('tim-kiem')}}" method="POST">
+                    @csrf
+                    <input class="form-control mr-sm-2" type="search" id="keywords" name="tukhoa" placeholder="Tìm kiếm tác giả,truyện,..." aria-label="Search">
+                    <div id="search_ajax" style="margin-left:400px">
+                        <ul class="dropdown-menu">
+                            <li>dcdc</li>
+                            <li>dcdc</li>
+                            <li>dcdc</li>
+                        </ul>
+                    </div>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Tìm kiếm</button>
                 </form>
             </div>
@@ -466,7 +474,37 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-  
+    <script type="text/javascript">
+        $('#keywords').keyup(function() {
+            var keywords = $(this).val();
+            console.log(keywords);
+            if (keywords != '') {
+                var _token = $('input[name="_token"]').val();
+                console.log(_token);
+                $.ajax({
+                    url: "{{url('/timkiem-ajax')}}",
+                    method: "POST",
+                    data: {
+                        keywords: keywords,
+                        _token: _token
+                    },
+                    success: function(data) {
+                        $('#search_ajax').fadeIn();
+                        $('#search_ajax').html(data);
+                    }
+                });
+            } else {
+                $('#search_ajax').fadeOut();
+            }
+
+        });
+
+        $(document).on('click', '.li_timkiem_ajax', function() {
+            $('#keywords').val($(this).text());
+            $('#search_ajax').fadeOut();
+
+        });
+    </script>
     <script type="text/javascript">
         $('.owl-carousel').owlCarousel({
             loop: true,
@@ -487,21 +525,23 @@
         })
     </script>
     <script type="text/javascript">
-        $('.select-chapter').on('change',function(){
+        $('.select-chapter').on('change', function() {
             var url = $(this).val();
             //alert(url);
-            if(url){
+            if (url) {
                 window.location = url;
             }
             return false;
         });
         current_chapter();
-        function current_chapter(){
-            var url =  window.location.href;
-            $('.select-chapter').find('option[value="'+url+'"]').attr("selected",true);
+
+        function current_chapter() {
+            var url = window.location.href;
+            $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
         }
     </script>
-
+   <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=666227108008719&autoLogAppEvents=1" nonce="PAQg8qD5"></script>
 </body>
 
 </html>
