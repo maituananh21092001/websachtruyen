@@ -24,6 +24,8 @@
                                 <th scope="col">Danh mục</th>
                                 <th scope="col">Thể loại</th>
                                 <th scope="col">Kích hoạt</th>
+                                <th scope="col">Ngày tạo</th>
+                                <th scope="col">Ngày cập nhật mới nhất</th>
                                 <th scope="col">Quản lý</th>
                             </tr>
                         </thead>
@@ -42,6 +44,13 @@
                                     <span class="text text-success">Kich hoat</span>
                                     @else
                                     <span class="text text-danger">Khong kich hoat</span>
+                                    @endif
+                                </td>
+                                <td>{{$truyen->created_at}} - {{$truyen->created_at->diffForHumans()}}</td>
+
+                                <td>
+                                    @if($truyen->update_at!='')
+                                    {{$truyen->update_at}}- {{$truyen->update_at->diffForHumans()}}
                                     @endif
                                 </td>
                                 <td>

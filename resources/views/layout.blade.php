@@ -540,8 +540,80 @@
             $('.select-chapter').find('option[value="' + url + '"]').attr("selected", true);
         }
     </script>
-   <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=666227108008719&autoLogAppEvents=1" nonce="PAQg8qD5"></script>
+    <script type="text/javascript">
+        show_wishlist();
+        function show_wishlist(){
+            if (localStorage.getItem('wishlist_truyen') != null) {
+                var data = JSON.parse(localStorage.getItem('wishlist_truyen'));
+                data.reverse();
+                for(i=0;i<data.length;i++){
+                    var title = data[i].title;
+                    var img = data[i].img;
+                    var id = data[i].id;
+                    var url = data[i].url;
+                    $('#yeuthich').append(`
+                    <div class="row mt-2">
+                        <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src="`+img+`"alt="`
+                        +title+`"></div>
+                        <div class="col-md-7 slidebar">
+                            <a href ="`+url+`">
+                            <p>`+title+`<p>
+                            </a>
+                        </div>
+                    </div>
+                `);
+                }
+            }
+        }
+        $('.btn-thich_truyen').click(function() {
+            $('.fa.fa-heart').css('color', '#fac');
+            const id = $('.wishlist_id').val();
+            const title = $('.wishlist_title').val();
+            const img = $('.card-img-top').attr('src');
+            const url = $('.wishlist_url').val();
+            const item = {
+                'id': id,
+                'title': title,
+                'img': img,
+                'url': url
+            }
+            alert(item)
+            if (localStorage.getItem('wishlist_truyen') == null) {
+                localStorage.setItem('wishlist_truyen', '[]');
+            }
+            var old_data = JSON.parse(localStorage.getItem('wishlist_truyen'));
+            var matches = $.grep(old_data, function(obj) {
+                return obj.id == id;
+            })
+            if (matches.length) {
+                alert('Truyen da co trong danh sach yeu thich');
+            } else {
+                if (old_data.length <= 10) {
+                    old_data.push(item);
+                } else {
+                    alert('Da toi gioi han truyen yeu thich');
+                }
+
+                $('#yeuthich').append(`
+                    <div class="row mt-2">
+                        <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src="`+img+`"alt="`
+                        +title+`"></div>
+                        <div class="col-md-7 slidebar">
+                            <a href ="`+url+`">
+                            <p>`+title+`<p>
+                            </a>
+                        </div>
+                    </div>
+                `);
+                localStorage.setItem('wishlist_truyen', JSON.stringify(old_data));
+                alert('Da luu vao danh sach truyen yeu thich');
+            }
+            localStorage.setItem('wishlist_truyen', JSON.stringify(old_data));
+        });
+    </script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=666227108008719&autoLogAppEvents=1" nonce="PAQg8qD5"></script>
 </body>
 
 </html>

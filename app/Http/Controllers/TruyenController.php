@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DanhmucTruyen;
 use App\Models\Truyen;
 use App\Models\Theloai;
+use Carbon\Carbon;
 class TruyenController extends Controller
 {
     /**
@@ -74,6 +75,7 @@ class TruyenController extends Controller
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->tacgia = $data['tacgia'];
         $truyen->danhmuc_id = $data['danhmuc'];
+        $truyen->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         //them anh vao folder
         $get_image = $request->hinhanh;
         $path = 'public/uploads/truyen/';
@@ -152,6 +154,7 @@ class TruyenController extends Controller
         $truyen->tacgia = $data['tacgia'];
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->danhmuc_id = $data['danhmuc'];
+        $truyen->update_at = Carbon::now('Asia/Ho_Chi_Minh');
         //them anh vao folder
         $get_image = $request->hinhanh;
         if ($get_image) {
