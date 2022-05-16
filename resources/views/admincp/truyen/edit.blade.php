@@ -73,6 +73,24 @@
                                 @endif
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="sel1">Truyện nổi bật:</label>
+                            <select class="custom-select" name ="truyennoibat" id="sel1">
+                            @if ($truyen->truyen_noibat == 0)
+                            <option selected value="0">Truyện mới</option>
+                                <option value="1">Truyện nổi bật</option>
+                                <option value="2">Truyện xem nhiều</option>
+                            @elseif($truyen->truyen_noibat == 1)
+                                <option value="0">Truyện mới</option>
+                                <option selected value="1">Truyện nổi bật</option>
+                                <option value="2">Truyện xem nhiều</option>
+                            @else
+                                <option value="0">Truyện mới</option>
+                                <option value="1">Truyện nổi bật</option>
+                                <option selected value="2">Truyện xem nhiều</option>
+                                @endif
+                            </select>
+                        </div>
                         <button type="submit" name="themtruyen" class="btn btn-default">Cập nhật</button>
                     </form>
                 </div>

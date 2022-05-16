@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @include('layouts.nav')
-<div class="container">
+<div class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
@@ -23,6 +23,7 @@
                                 <th scope="col">Tóm tắt</th>
                                 <th scope="col">Danh mục</th>
                                 <th scope="col">Thể loại</th>
+                                <th scope="col">Nổi bật</th>
                                 <th scope="col">Kích hoạt</th>
                                 <th scope="col">Ngày tạo</th>
                                 <th scope="col">Ngày cập nhật mới nhất</th>
@@ -46,6 +47,38 @@
                                     <span class="text text-danger">Khong kich hoat</span>
                                     @endif
                                 </td>
+                                <td>
+                                    @if($truyen->truyen_noibat==0)
+                                    <form>
+                                        @csrf
+                                        <select data-truyen_id = "{{$truyen->id}}" class="custom-select truyennoibat" name="truyennoibat" id="sel1">
+                                            <option selected value="0">Truyện mới</option>
+                                            <option value="1">Truyện nổi bật</option>
+                                            <option value="2">Truyện xem nhiều</option>
+                                        </select>
+                                    </form>
+                                    @elseif($truyen->truyen_noibat==1)
+                                    <form>
+                                        @csrf
+                                        <select data-truyen_id = "{{$truyen->id}}" class="custom-select truyennoibat" name="truyennoibat" id="sel1">
+                                            <option value="0">Truyện mới</option>
+                                            <option selected value="1">Truyện nổi bật</option>
+                                            <option value="2">Truyện xem nhiều</option>
+
+                                        </select>
+                                    </form>
+                                    @elseif($truyen->truyen_noibat==2)
+                                    <form>
+                                        @csrf
+                                        <select data-truyen_id = "{{$truyen->id}}" class="custom-select truyennoibat" name="truyennoibat" id="sel1">
+                                            <option value="0">Truyện mới</option>
+                                            <option value="1">Truyện nổi bật</option>
+                                            <option selected value="2">Truyện xem nhiều</option>
+
+                                        </select>
+                                    </form>
+                                    @endif
+                                </td>
                                 <td>{{$truyen->created_at}} - {{$truyen->created_at->diffForHumans()}}</td>
 
                                 <td>
@@ -54,12 +87,11 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{route('truyen.edit',[$truyen->id])}}" class = "btn btn-primary">Edit</a>
+                                    <a href="{{route('truyen.edit',[$truyen->id])}}" class="btn btn-primary">Edit</a>
                                     <form action="{{route('truyen.destroy',[$truyen->id])}}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button onclick="return confirm('Bạn muốn xóa truyen này?');"
-                                         class="btn btn-danger">Delete</button>
+                                        <button onclick="return confirm('Bạn muốn xóa truyen này?');" class="btn btn-danger">Delete</button>
 
                                     </form>
                                 </td>
@@ -69,7 +101,7 @@
                     </table>
                 </div>
             </div>
-            
+
         </div>
     </div>
 </div>

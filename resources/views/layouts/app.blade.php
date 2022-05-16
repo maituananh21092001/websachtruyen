@@ -12,7 +12,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -118,7 +118,35 @@
             document.getElementById('convert_slug').value = slug;
         }
     </script>
-    
+    <script type="text/javascript">
+        $('.truyennoibat').change(function() {
+            const truyennoibat = $(this).val();
+            const truyen_id = $(this).data('truyen_id');
+            var _token = $('input[name="_token"]').val();
+            var thongbao = '';
+            if (truyennoibat == 0) {
+                 thongbao = 'Thay đổi truyện mới thành công';
+            }
+            else if(truyennoibat == 1) {
+                 thongbao = 'Thay đổi truyện nổi bật thành công';
+            }
+            else if(truyennoibat == 2) {
+                 thongbao = 'Thay đổi truyện xem nhiều thành công';
+            }
+            $.ajax({
+                url: "{{url('/truyennoibat')}}",
+                method: "POST",
+                data: {
+                    truyennoibat: truyennoibat,
+                    truyen_id: truyen_id,
+                    _token: _token
+                },
+                success: function(data) {
+                    alert(thongbao);
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>

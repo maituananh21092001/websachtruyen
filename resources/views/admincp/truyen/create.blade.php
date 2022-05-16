@@ -67,6 +67,15 @@
                                 <option value="1">Không kích hoạt</option>
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="sel1">Truyện nổi bật/hot:</label>
+                            <select class="custom-select" name ="truyennoibat" id="sel1">
+                               
+                                <option value="0">Truyện mới</option>
+                                <option value="1">Truyện nổi bật</option>
+                                <option value="2">Truyện xem nhiều</option>
+                            </select>
+                        </div>
                         <button type="submit" name="themtruyen" class="btn btn-default">Thêm</button>
                     </form>
                 </div>

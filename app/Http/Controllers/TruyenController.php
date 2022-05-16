@@ -51,6 +51,7 @@ class TruyenController extends Controller
                 'hinhanh' => 'required|image|max:2048|dimensions:min_width=100, min_height=100,max_width=1000,max_height=1000',
                 'danhmuc' => 'required',
                 'theloai' =>'required',
+                'truyennoibat' => 'required',
             ],
             [
                 'tentruyen.required' => 'Ten truyen phai co',
@@ -76,6 +77,7 @@ class TruyenController extends Controller
         $truyen->tacgia = $data['tacgia'];
         $truyen->danhmuc_id = $data['danhmuc'];
         $truyen->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $truyen->truyen_noibat = $data['truyennoibat'];
         //them anh vao folder
         $get_image = $request->hinhanh;
         $path = 'public/uploads/truyen/';
@@ -132,6 +134,7 @@ class TruyenController extends Controller
                 'kichhoat' => 'required',
                 'danhmuc' => 'required',
                 'theloai' => 'required',
+                'truyennoibat' => 'required',
             ],
             [
 
@@ -154,6 +157,7 @@ class TruyenController extends Controller
         $truyen->tacgia = $data['tacgia'];
         $truyen->kichhoat = $data['kichhoat'];
         $truyen->danhmuc_id = $data['danhmuc'];
+        $truyen->truyen_noibat = $data['truyennoibat'];
         $truyen->update_at = Carbon::now('Asia/Ho_Chi_Minh');
         //them anh vao folder
         $get_image = $request->hinhanh;
@@ -189,5 +193,12 @@ class TruyenController extends Controller
         }
         Truyen::find($id)->delete();
         return redirect()->back()->with('status', 'Xoa truyen thanh cong');
+    }
+
+    public function truyennoibat(Request $request){
+        $data = $request->all();
+        $truyen = Truyen::find($data['truyen_id']);
+        $truyen->truyen_noibat = $data['truyennoibat'];
+        $truyen->save();
     }
 }
