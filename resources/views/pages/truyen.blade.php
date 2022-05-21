@@ -97,7 +97,33 @@
 
     </div>
     <div class="col-md-3">
-        <h3 class="title_truyen">Truyện yêu thích</h3>
+        <h3 class="card-header">Truyện nổi bật</h3>
+        @foreach($truyennoibat as $key=> $noibat)
+        <div class="row mt-2">
+            <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src = "{{asset('public/uploads/truyen/'.$noibat->hinhanh)}}" alt="{{$noibat->tentruyen}}">
+            </div>
+            <div class="col-md-7 slidebar">
+                <a href="{{url('xem-truyen/'.$noibat->slug_truyen)}}">
+                    <p>{{$noibat->tentruyen}}</p>
+                    <p><i class="fas fa-eye"></i>233</p>
+                </a>
+            </div>
+        </div>
+        @endforeach
+        <h3 class="card-header">Truyện xem nhiều</h3>
+        @foreach($truyenxemnhieu as $key=> $xemnhieu)
+        <div class="row mt-2">
+            <div class="col-md-5"><img class="img img-responsive" width="100%" class="card-img-top" src = "{{asset('public/uploads/truyen/'.$xemnhieu->hinhanh)}}" alt="{{$noibat->tentruyen}}">
+            </div>
+            <div class="col-md-7 slidebar">
+                <a href="{{url('xem-truyen/'.$xemnhieu->slug_truyen)}}">
+                    <p>{{$xemnhieu->tentruyen}}</p>
+                    <p><i class="fas fa-eye"></i>233</p>
+                </a>
+            </div>
+        </div>
+        @endforeach
+        <h3 class="title_truyen card-header">Truyện yêu thích</h3>
         <div id="yeuthich"></div>
     </div>
 </div>
