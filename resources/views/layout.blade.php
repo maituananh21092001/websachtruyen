@@ -611,7 +611,21 @@
             localStorage.setItem('wishlist_truyen', JSON.stringify(old_data));
         });
     </script>
-
+    <script type="text/javascript">
+            $('.tabs_danhmuc').click(function(){
+                const danhmuc_id = $(this).data('danhmuc_id');
+               // alert(danhmuc_id);  
+               var _token = $('input[name="_token"]').val();
+               $.ajax({
+                   url:"{{url('/tabs-danhmuc')}}",
+                   method:"POST",
+                   data:{_token:_token,danhmuc_id:danhmuc_id},
+                   success:function(data){
+                       $('#tab_danhmuctruyen').html(data);
+                   }
+               })
+            })
+    </script>
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v13.0&appId=666227108008719&autoLogAppEvents=1" nonce="PAQg8qD5"></script>
 </body>

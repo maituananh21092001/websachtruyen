@@ -3,6 +3,32 @@
 @include('pages.slide')
 @endsection
 @section('content')
+
+<ul class="nav nav-tabs">
+    @php
+    $i=0
+    @endphp
+    @foreach($danhmuc as $key =>$tab_danhmuc)
+    @php
+    $i++;
+    @endphp
+    <form>
+        @csrf
+        <li class="nav-item active">
+            <a data-danhmuc_id="{{$tab_danhmuc->id}}" class="nav-link tabs_danhmuc {{$i==1?'active':''}}" data-toggle="tab" href="#{{$tab_danhmuc->slug_danhmuc}}">{{$tab_danhmuc->tendanhmuc}}</a>
+        </li>
+    </form>
+    @endforeach
+</ul>
+
+
+        <div id="tab_danhmuctruyen">
+            <div class="row">
+                
+            </div>
+        </div>
+    
+</div>
 <h3>SÁCH MỚI CẬP NHẬT</h3>
 <div class="album py-5 bg-light">
     <div class="container">

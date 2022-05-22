@@ -29,6 +29,20 @@ class IndexController extends Controller
         }
     } 
 
+    public function tabs_danhmuc(Request $request){
+        $data = $request->all();
+        $output = '';
+        $truyen = Truyen::with('danhmuctruyen','theloai')->where('danhmuc_id',$data['danhmuc_id'])->get();
+        foreach($truyen as $key => $value){
+            $output.='
+            <ul class="mucluctruyen">
+            <li><a target = "_blank" href="'.url('xem-truyen/'.$value->slug_truyen).'">'.$value->tentruyen.'</a></li>
+        </ul>
+            ';
+        }
+        echo $output;
+    }
+
     public function home()
     {
         $theloai = Theloai::orderBy('id', 'DESC')->get();
