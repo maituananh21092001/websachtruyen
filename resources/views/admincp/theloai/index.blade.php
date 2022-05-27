@@ -52,6 +52,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $list_theloai->onEachSide(5)->links() !!}
                 </div>
             </div>
             

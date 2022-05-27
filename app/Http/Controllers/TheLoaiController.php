@@ -13,7 +13,7 @@ class TheLoaiController extends Controller
      */
     public function index()
     {
-        $list_theloai = Theloai::orderBy('id', 'DESC')->get();
+        $list_theloai = Theloai::orderBy('id', 'DESC')->paginate(10);
         return view('admincp.theloai.index')->with(compact('list_theloai'));
     }
 

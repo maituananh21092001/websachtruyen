@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <h4>{{$chapter->truyen->tentruyen}}</h4>
         <p>{{$chapter->tieude}}</p>
-        <div class="col-md-5">
+        <div class="">
             <style type="text/css">
                 .isDisabled {
                     color: currentColor;

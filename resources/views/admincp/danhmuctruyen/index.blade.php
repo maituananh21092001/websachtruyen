@@ -52,6 +52,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    {!! $danhmuctruyen->onEachSide(5)->links() !!}
                 </div>
             </div>
 
