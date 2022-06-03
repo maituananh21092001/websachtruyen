@@ -10,6 +10,25 @@ use App\Models\Theloai;
 
 class IndexController extends Controller
 {
+    public function kytu(Request $request,$kytu){
+        $theloai = Theloai::orderBy('id', 'DESC')->get();
+        $slide_truyen = Truyen::orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
+        $danhmuc = DanhmucTruyen::orderBy('id', 'DESC')->get();
+        if($kytu=='0-9'){
+            $rand = [0,1,2,3,4,5,6,7,8,9];
+            $truyen = Truyen::where(
+                function($query) use ($rand){
+                    for($i=0;$i<=9;$i++){
+                        $query->orwhere('tentruyen','LIKE',$rand[$i].'%');
+                    }
+                })->get();
+            
+        }else{
+            $truyen =  Truyen::orderBy('id', 'DESC')->where('tentruyen','LIKE',$kytu.'%')->where('kichhoat', 0)->get();
+
+        }
+        return view('pages.kytu')->with(compact('danhmuc', 'truyen', 'theloai','slide_truyen'));
+    }
     public function timkiem_ajax(Request $request){
         $data = $request->all();
 
@@ -48,7 +67,7 @@ class IndexController extends Controller
         $theloai = Theloai::orderBy('id', 'DESC')->get();
         $slide_truyen = Truyen::orderBy('id','DESC')->where('kichhoat',0)->take(8)->get();
         $danhmuc = DanhmucTruyen::orderBy('id', 'DESC')->get();
-        $truyen =  Truyen::orderBy('id', 'DESC')->where('kichhoat', 0)->get();
+        $truyen =  Truyen::orderBy('id', 'DESC')->where('kichhoat', 0)->paginate(12);
         return view('pages.home')->with(compact('danhmuc', 'truyen', 'theloai','slide_truyen'));
     }
 

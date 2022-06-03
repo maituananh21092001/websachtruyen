@@ -29,6 +29,7 @@ Route::post('/tim-kiem',[IndexController::class,'timkiem']);
 Route::post('/timkiem-ajax',[IndexController::class,'timkiem_ajax']);
 Route::post('/truyennoibat',[TruyenController::class,'truyennoibat']);
 Route::post('/tabs-danhmuc',[IndexController::class,'tabs_danhmuc']);
+Route::get('kytu/{kytu}',[IndexController::class,'kytu']);
 // Route::get('/custom_error',function(){
 //     return Artisan::call('php artisan vendor:publish --tag=laravel-errors');
 // });

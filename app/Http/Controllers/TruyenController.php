@@ -186,12 +186,12 @@ class TruyenController extends Controller
      */
     public function destroy($id)
     {
-        $truyen = Truyen::find($id);
-        $path = 'public/uploads/truyen/';
-        if ($truyen->hinhanh != NULL) {
-            unlink($path);
-        }
-        Truyen::find($id)->delete();
+        // $truyen = Truyen::find($id);
+        // $path = 'public/uploads/truyen/';
+        // if ($truyen->hinhanh != NULL) {
+        //     unlink($path);
+        // }
+     Truyen::find($id)->delete();
         return redirect()->back()->with('status', 'Xoa truyen thanh cong');
     }
 
